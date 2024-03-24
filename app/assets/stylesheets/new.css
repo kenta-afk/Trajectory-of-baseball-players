@@ -1,0 +1,33 @@
+body {
+    background:radial-gradient(ellipse farthest-side, rgb(159, 95, 189), rgb(88, 27, 137))
+}
+
+.outer {
+    text-align: center;
+    margin: 100px;
+    padding: 50px;
+}
+
+.inner {
+    display: inline-block;
+    text-align: center; 
+}
+
+h2 {
+    color: white;
+}
+
+.field {
+    color: white;
+}
+
+.actions input[type="submit"] {
+    width: 150px;  /* ボタンの幅を指定 */
+    height: 50px;  /* ボタンの高さを指定 */
+    border-radius: 25px;  /* ボタンの角を丸くする */
+}
+
+.actions {
+    padding: 50px;
+}
+
