@@ -1,0 +1,2 @@
+class TopPageController < ApplicationController
+end
