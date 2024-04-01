@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     end
 
     def after_sign_in_path_for(resource)
-      top_page_index_path # ログイン後にリダイレクトしたいpathを指定
+      top_page_path # ログイン後にリダイレクトしたいpathを指定
     end
     
   end
