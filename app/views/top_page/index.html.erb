@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>野球人の軌跡</title>
+
+  <%= stylesheet_link_tag 'show', :media => "all" %>
+</head>
+<body>
+  <header>
+    <h1>野球人の軌跡</h1>
+    <p class="welcome">ようこそ、<%= current_user.name %>さん！</p>
+  </header>
+
+  <main>
+    <section class="profile">
+      <h2><%= current_user.name %>さんの軌跡</h2>
+    </section>
+
+    <section class="stats">
+      <table>
+        <tr>
+          <th>打数</th>
+          <th>安打</th>
+          <th>球数</th>
+          <th>四死球</th>
+          <th>打率</th>
+        </tr>
+        </table>
+    </section>
+  </main>
+</body>
+</html>
