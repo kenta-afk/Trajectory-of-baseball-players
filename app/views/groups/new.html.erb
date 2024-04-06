@@ -1,15 +1,5 @@
-<%= form_with(model: @group, local: true) do |form| %>
-    <div class="field">
-      <%= form.label :name %>
-      <%= form.text_field :name %>
-    </div>
-  
-    <div class="actions">
-      <%= form.submit %>
-    </div>
-  <% end %>
-  
-  <% if @group.uuid.present? %>
-    <p>Your group's UUID is: <%= @group.uuid %></p>
-  <% end %>
-  
+<h1>New Group</h1>
+
+<%= render 'form', group: @group %>
+
+<%= link_to 'Back', groups_path %>
