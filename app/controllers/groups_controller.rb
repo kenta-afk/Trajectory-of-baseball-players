@@ -5,6 +5,7 @@ class GroupsController < ApplicationController
 
     def new
         @group = Group.new
+        @group.build_status
     end
 
     def create
@@ -21,5 +22,6 @@ class GroupsController < ApplicationController
 
     def group_params
         params.require(:group).permit(:name)
+        params.require(:group).permit(:name, status_attributes: [:user_id, :group_id])
     end
 end
