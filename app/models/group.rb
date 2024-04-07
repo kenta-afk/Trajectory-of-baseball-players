@@ -6,5 +6,11 @@ class Group < ApplicationRecord
     def generate_uuid
         self.uuid = SecureRandom.uuid
     end
+
+    has_many :group_users
+    has_many :users, through: :group_users
+    has_one :status, dependent: :destroy
+  
+    accepts_nested_attributes_for :status
 end
   
