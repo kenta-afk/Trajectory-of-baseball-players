@@ -1,0 +1,14 @@
+<%= form_with(model: @group_user, url: memberships_path, local: true) do |form| %>
+  <div class="field">
+    <%= form.label :uuid, 'Group UUID' %>
+    <%= form.text_field :uuid %>
+  </div>
+
+  <%= form.fields_for :status do |status_form| %>
+    <%= status_form.hidden_field :user_id, value: current_user.id %>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit 'Join Group' %>
+  </div>
+<% end %>
