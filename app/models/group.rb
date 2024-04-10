@@ -12,5 +12,6 @@ class Group < ApplicationRecord
     has_one :status, dependent: :destroy
   
     accepts_nested_attributes_for :status
+
 end
   
