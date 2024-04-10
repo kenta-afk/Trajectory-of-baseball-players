@@ -2,4 +2,11 @@
 
 <p>Your group's UUID is: <%= @group.uuid %></p>
 
+<h2>Members</h2>
+<ul>
+  <% @members.each do |group_user| %>
+    <li><%= group_user.user.name %></li>
+  <% end %>
+</ul>
+
 <%= link_to 'Back', groups_path %>
