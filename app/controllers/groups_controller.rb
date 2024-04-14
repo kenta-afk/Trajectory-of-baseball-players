@@ -10,10 +10,10 @@ class GroupsController < ApplicationController
   
     def create
       @group = Group.new(group_params)
-  
+    
       if @group.save
-        # グループを作成したユーザーをメンバーとして追加
-        @group.group_users.create(user: current_user)
+        # グループを作成したユーザーをメンバーとして追加し、creatorフラグをtrueに設定
+        @group.group_users.create(user: current_user, creator: true)
         redirect_to @group, notice: 'Group was successfully created.'
       else
         render :new
@@ -24,6 +24,8 @@ class GroupsController < ApplicationController
       @group = Group.find(params[:id])
       @members = @group.group_users
     end
+
+   
   
     private
   
