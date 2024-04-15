@@ -1,12 +1,22 @@
-<h1><%= @group.name %></h1>
+<!DOCTYPE html>
+<html>
+<head>
+  <%= stylesheet_link_tag 'groups_show', :media => "all" %>
+</head>
+<body>
+  <h1 id="group-name"><%= @group.name %></h1>
 
-<p>Your group's UUID is: <%= @group.uuid %></p>
+  <p>Your group's UUID is: <span id="group-uuid"><%= @group.uuid %></span></p>
 
-<h2>Members</h2>
-<ul>
-  <% @members.each do |group_user| %>
-    <li><%= group_user.user.name %></li>
-  <% end %>
-</ul>
+  <h2>Members</h2>
+  <ul id="members-list">
+    <% @members.each do |group_user| %>
+      <li class="member-name"><%= group_user.user.name %></li>
+    <% end %>
+  </ul>
 
-<%= link_to 'Back', groups_path %>
+  <a href="<%= groups_path %>" id="back-link">Back</a>
+</body>
+</html>
+
+  
