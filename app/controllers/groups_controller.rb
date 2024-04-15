@@ -19,6 +19,19 @@ class GroupsController < ApplicationController
         render :new
       end
     end
+
+    def destroy
+      @group = Group.find(params[:id])
+      if @group.group_users.find_by(user: current_user)&.creator
+        if @group.destroy
+          redirect_to groups_path, notice: 'Group was successfully destroyed.'
+        else
+          redirect_to groups_path, alert: 'Group could not be destroyed.'
+        end
+      else
+        redirect_to groups_path, alert: 'You are not authorized to delete this group.'
+      end
+    end
   
     def show
       @group = Group.find(params[:id])
