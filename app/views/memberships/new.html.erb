@@ -1,3 +1,5 @@
+<%= stylesheet_link_tag 'memberships_new', :media => "all" %>
+
 <%= form_with(model: @group_user, url: memberships_path, local: true) do |form| %>
   <div class="field">
     <%= form.label :uuid, 'Group UUID' %>
