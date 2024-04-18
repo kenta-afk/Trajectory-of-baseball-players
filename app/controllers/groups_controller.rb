@@ -38,6 +38,7 @@ class GroupsController < ApplicationController
       @members = @group.group_users
     end
 
+    
    
   
     private
