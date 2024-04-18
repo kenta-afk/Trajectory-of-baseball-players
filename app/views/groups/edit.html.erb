@@ -1,0 +1,28 @@
+<%= form_with(model: @group, url: {action: "update"}, local: true) do |form| %>
+  <div>
+    <%= form.label :date, "日付" %>
+    <%= form.date_field :date %>
+  </div>
+  <div>
+    <%= form.label :opponent, "対戦相手" %>
+    <%= form.text_field :opponent %>
+  </div>
+  <% @group.users.each do |user| %>
+    <div>
+      <%= fields_for "statuses[]", user.statuses.build do |status_fields| %>
+        <%= status_fields.hidden_field :user_id, value: user.id %>
+        <%= status_fields.label :at_bats, "打数" %>
+        <%= status_fields.number_field :at_bats, min: 0 %>
+        <%= status_fields.label :hits, "安打数" %>
+        <%= status_fields.number_field :hits, min: 0 %>
+        <%= status_fields.label :pitches, "球数" %>
+        <%= status_fields.number_field :pitches, min: 0 %>
+        <%= status_fields.label :walks, "死四球" %>
+        <%= status_fields.number_field :walks, min: 0 %>
+        <%= status_fields.label :batting_average, "打率" %>
+        <%= status_fields.number_field :batting_average, step: 0.01, min: 0, max: 1 %>
+      <% end %>
+    </div>
+  <% end %>
+  <%= form.submit "試合結果を登録" %>
+<% end %>
