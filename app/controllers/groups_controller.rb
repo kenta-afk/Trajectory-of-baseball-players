@@ -38,13 +38,25 @@ class GroupsController < ApplicationController
       @members = @group.group_users
     end
 
+    def update
+      @group = Group.find(params[:id])
+      if @group.update(group_params)
+        redirect_to @group, notice: '試合結果が登録されました。'
+      else
+        render :edit, alert: '試合結果の登録に失敗しました。'
+      end
+    end
     
-   
+    def edit
+      @group = Group.find(params[:id])
+    end
+    
   
     private
   
     def group_params
-      params.require(:group).permit(:name, status_attributes: [:user_id, :group_id])
+      params.require(:group).permit(:date, :opponent, :name, statuses_attributes: [:user_id, :group_id, :at_bats, :hits, :pitches, :walks, :batting_average])
     end
+    
   end
   
