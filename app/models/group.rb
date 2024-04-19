@@ -13,7 +13,7 @@ class Group < ApplicationRecord
     has_many :group_users, dependent: :destroy
     has_many :statuses
     has_many :users, through: :statuses
-    accepts_nested_attributes_for :status
+    accepts_nested_attributes_for :statuses
 
 end
   
