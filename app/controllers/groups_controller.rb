@@ -55,7 +55,7 @@ class GroupsController < ApplicationController
     private
   
     def group_params
-      params.require(:group).permit(:date, :opponent, :name, statuses_attributes: [:user_id, :group_id, :at_bats, :hits, :pitches, :walks, :batting_average])
+      params.require(:group).permit(:name, statuses_attributes: [:user_id, :group_id, :date, :opponent, :at_bats, :hits, :pitches, :walks, :batting_average])
     end
     
   end
