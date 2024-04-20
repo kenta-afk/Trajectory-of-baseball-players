@@ -9,6 +9,7 @@
   </div>
   <% @group.users.each do |user| %>
     <div>
+      <h3><%= user.name %></h3> <!-- メンバーの名前を表示 -->
       <%= fields_for "statuses[]", user.statuses.build do |status_fields| %>
         <%= status_fields.hidden_field :user_id, value: user.id %>
         <%= status_fields.label :at_bats, "打数" %>
