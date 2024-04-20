@@ -9,7 +9,7 @@
     <%= form.text_field :name, class: "input" %>
   </div>
 
-  <%= form.fields_for :status do |status_form| %>
+  <%= form.fields_for :statuses do |status_form| %>
     <%= status_form.hidden_field :user_id, value: current_user.id %>
   <% end %>
 
