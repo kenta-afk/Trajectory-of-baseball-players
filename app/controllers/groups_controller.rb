@@ -5,7 +5,7 @@ class GroupsController < ApplicationController
   
     def new
       @group = Group.new
-      @group.build_status
+      @group.statuses.build
     end
   
     def create
@@ -14,11 +14,18 @@ class GroupsController < ApplicationController
       if @group.save
         # グループを作成したユーザーをメンバーとして追加し、creatorフラグをtrueに設定
         @group.group_users.create(user: current_user, creator: true)
+        
+        # ここで各Statusのgroup_idを設定
+        @group.statuses.each do |status|
+          status.update(group_id: @group.id)
+        end
+    
         redirect_to @group, notice: 'Group was successfully created.'
       else
         render :new
       end
     end
+    
 
     def destroy
       @group = Group.find(params[:id])
@@ -38,18 +45,7 @@ class GroupsController < ApplicationController
       @members = @group.group_users
     end
 
-    def update
-      @group = Group.find(params[:id])
-      if @group.update(group_params)
-        redirect_to @group, notice: '試合結果が登録されました。'
-      else
-        render :edit, alert: '試合結果の登録に失敗しました。'
-      end
-    end
-    
-    def edit
-      @group = Group.find(params[:id])
-    end
+   
     
   
     private
