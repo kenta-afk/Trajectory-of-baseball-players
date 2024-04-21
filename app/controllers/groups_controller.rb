@@ -25,6 +25,11 @@ class GroupsController < ApplicationController
         render :new
       end
     end
+
+    def edit
+      @group = Group.find(params[:id])
+      @members = @group.group_users
+    end
     
 
     def destroy
@@ -45,7 +50,18 @@ class GroupsController < ApplicationController
       @members = @group.group_users
     end
 
-   
+    def update
+      @group = Group.find(params[:id])
+      @group.group_users.each do |group_user|
+        status = group_user.user.statuses.find_by(group_id: @group.id)
+        if status.update(status_params)
+          flash[:success] = "Status updated"
+        else
+          flash[:error] = "Failed to update status"
+        end
+      end
+      redirect_to group_path(@group)
+    end
     
   
     private
