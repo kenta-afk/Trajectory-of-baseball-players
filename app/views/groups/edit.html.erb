@@ -1,29 +1,61 @@
-<%= form_with(model: @group, url: {action: "update"}, local: true) do |form| %>
-  <div>
-    <%= form.label :date, "日付" %>
-    <%= form.date_field :date %>
-  </div>
-  <div>
-    <%= form.label :opponent, "対戦相手" %>
-    <%= form.text_field :opponent %>
-  </div>
-  <% @group.users.each do |user| %>
-    <div>
-      <h3><%= user.name %></h3> <!-- メンバーの名前を表示 -->
-      <%= fields_for "statuses[]", user.statuses.build do |status_fields| %>
-        <%= status_fields.hidden_field :user_id, value: user.id %>
-        <%= status_fields.label :at_bats, "打数" %>
-        <%= status_fields.number_field :at_bats, min: 0 %>
-        <%= status_fields.label :hits, "安打数" %>
-        <%= status_fields.number_field :hits, min: 0 %>
-        <%= status_fields.label :pitches, "球数" %>
-        <%= status_fields.number_field :pitches, min: 0 %>
-        <%= status_fields.label :walks, "死四球" %>
-        <%= status_fields.number_field :walks, min: 0 %>
-        <%= status_fields.label :batting_average, "打率" %>
-        <%= status_fields.number_field :batting_average, step: 0.01, min: 0, max: 1 %>
-      <% end %>
-    </div>
-  <% end %>
-  <%= form.submit "試合結果を登録" %>
-<% end %>
+<!DOCTYPE html>
+<html>
+<head>
+  
+</head>
+<body>
+  <h1>Edit Status for <%= @group.name %></h1>
+
+  <ul id="members-list">
+    <% @members.each do |group_user| %>
+      <li class="member-name">
+        <%= group_user.user.name %>
+        <%= form_with(model: Status.find_by(user: group_user.user, group: @group), local: true) do |form| %>
+
+          <div class="field">
+            <%= form.label :date %>
+            <%= form.date_field :date %>
+          </div>
+
+          <div class="field">
+            <%= form.label :opponent %>
+            <%= form.text_field :opponent %>
+          </div>
+
+          <div class="field">
+            <%= form.label :at_bats %>
+            <%= form.number_field :at_bats %>
+          </div>
+
+          <div class="field">
+            <%= form.label :hits %>
+            <%= form.number_field :hits %>
+          </div>
+
+          <div class="field">
+            <%= form.label :batting_average %>
+            <%= form.number_field :batting_average, step: 0.01 %>
+          </div>
+
+
+          <div class="field">
+            <%= form.label :pitches %>
+            <%= form.number_field :pitches %>
+          </div>
+
+          <div class="field">
+            <%= form.label :walks %>
+            <%= form.number_field :walks %>
+          </div>
+
+          <div class="actions">
+            <%= form.submit %>
+          </div>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+
+  <a href="<%= group_path(@group) %>" id="back-link">Back</a>
+</body>
+</html>
