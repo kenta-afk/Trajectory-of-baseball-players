@@ -53,7 +53,7 @@ class GroupsController < ApplicationController
     def update
       @group = Group.find(params[:id])
       @group.group_users.each do |group_user|
-        status = group_user.user.statuses.find_by(group_id: @group.id)
+        status = group_user.user.statuses.find_by(group: @group.id)
         if status.update(status_params)
           flash[:success] = "Status updated"
         else
@@ -63,11 +63,16 @@ class GroupsController < ApplicationController
       redirect_to group_path(@group)
     end
     
+    
   
     private
   
     def group_params
       params.require(:group).permit(:name, statuses_attributes: [:user_id, :group_id, :date, :opponent, :at_bats, :hits, :pitches, :walks, :batting_average])
+    end
+
+    def status_params
+      params.require(:status).permit(:date, :opponent, :at_bats, :hits, :pitches, :walks, :batting_average)
     end
     
   end
