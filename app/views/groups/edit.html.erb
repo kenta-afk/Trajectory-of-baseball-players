@@ -10,7 +10,11 @@
     <% @members.each do |group_user| %>
       <li class="member-name">
         <%= group_user.user.name %>
-        <%= form_with(model: Status.find_by(user: group_user.user, group: @group), local: true) do |form| %>
+        <% status = group_user.user.statuses.find_by(group: @group) %>
+        <%= form_with(model: [group_user.user, status], local: true) do |form| %>
+
+
+
 
           <div class="field">
             <%= form.label :date %>
