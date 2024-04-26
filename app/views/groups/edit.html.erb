@@ -6,59 +6,41 @@
 <body>
   <h1>Edit Status for <%= @group.name %></h1>
 
-  <ul id="members-list">
-    <% @members.each do |group_user| %>
-      <li class="member-name">
-        <%= group_user.user.name %>
-        <% status = group_user.user.statuses.find_by(group: @group) %>
-        <%= form_with(model: [group_user.user, status], local: true) do |form| %>
-
-
-
-
-          <div class="field">
-            <%= form.label :date %>
-            <%= form.date_field :date %>
-          </div>
-
-          <div class="field">
-            <%= form.label :opponent %>
-            <%= form.text_field :opponent %>
-          </div>
-
-          <div class="field">
-            <%= form.label :at_bats %>
-            <%= form.number_field :at_bats %>
-          </div>
-
-          <div class="field">
-            <%= form.label :hits %>
-            <%= form.number_field :hits %>
-          </div>
-
-          <div class="field">
-            <%= form.label :batting_average %>
-            <%= form.number_field :batting_average, step: 0.01 %>
-          </div>
-
-
-          <div class="field">
-            <%= form.label :pitches %>
-            <%= form.number_field :pitches %>
-          </div>
-
-          <div class="field">
-            <%= form.label :walks %>
-            <%= form.number_field :walks %>
-          </div>
-
-          <div class="actions">
-            <%= form.submit %>
-          </div>
+  <%= form_with(model: @group, local: true, html: { class: "group-form" }) do |form| %>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Date</th>
+          <th>Opponent</th>
+          <th>At Bats</th>
+          <th>Hits</th>
+          <th>Batting Average</th>
+          <th>Pitches</th>
+          <th>Walks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= form.fields_for :statuses do |status_form| %>
+          <% status = status_form.object %>
+          <tr>
+            <td><%= status.user.name %></td>
+            <td><%= status_form.date_field :date %></td>
+            <td><%= status_form.text_field :opponent %></td>
+            <td><%= status_form.number_field :at_bats %></td>
+            <td><%= status_form.number_field :hits %></td>
+            <td><%= status_form.number_field :batting_average, step: 0.01 %></td>
+            <td><%= status_form.number_field :pitches %></td>
+            <td><%= status_form.number_field :walks %></td>
+          </tr>
         <% end %>
-      </li>
-    <% end %>
-  </ul>
+      </tbody>
+    </table>
+
+    <div class="actions">
+      <%= form.submit "Submit", class: "submit-button" %>
+    </div>
+  <% end %>
 
   <a href="<%= group_path(@group) %>" id="back-link">Back</a>
 </body>
