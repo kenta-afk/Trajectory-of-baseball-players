@@ -24,7 +24,10 @@
           <td><%= group.name %></td>
           <td><%= link_to 'Show', group %></td>
           <% if group.group_users.find_by(user: current_user)&.creator %>
-            <td><%= link_to 'Edit', edit_group_path(group) %></td>
+            <td><%= link_to 'Edit', statuses_path(@status, group_id: group.id, user_id: @user.id) %></td>
+
+
+
             <td><%= button_to 'Destroy', group_path(group), method: :delete, data: { confirm: 'Are you sure?' } %></td>
           <% end %>
         </tr>
