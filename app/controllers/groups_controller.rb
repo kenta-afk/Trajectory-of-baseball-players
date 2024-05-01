@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
     def index
       @groups = current_user.groups
+      @user = current_user
     end
   
     def new
@@ -26,12 +27,7 @@ class GroupsController < ApplicationController
       end
     end
 
-    def edit
-      @group = Group.find(params[:id])
-      @members = @group.group_users
-      @statuses = @group.statuses
     
-    end
     
     
     
@@ -55,15 +51,7 @@ class GroupsController < ApplicationController
       @members = @group.group_users
     end
 
-    def update
-      @group = Group.find(params[:id])
-      if @group.update(group_params)
-        flash[:success] = "Status updated"
-      else
-        flash[:error] = "Failed to update status"
-      end
-      redirect_to group_path(@group)
-    end
+    
     
     
     
