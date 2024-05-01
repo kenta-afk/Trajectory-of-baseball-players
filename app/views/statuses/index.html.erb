@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- 省略 -->
+</head>
+<body>
+  <h1 id="group-name"><%= @group.name %></h1>
+
+  <p>Your group's UUID is: <span id="group-uuid"><%= @group.uuid %></span></p>
+
+  <h2>Members</h2>
+  <ul id="members-list">
+    <% @members.each do |group_user| %>
+      <li class="member-name">
+        <%= group_user.user.name %>
+        <!-- 各メンバーのステータスを編集するためのEditボタンを追加します -->
+        <%= link_to 'Edit Status', edit_status_path(@group, group_user.user) %>
+      </li>
+    <% end %>
+  </ul>
+
+  <a href="<%= groups_path %>" id="back-link">Back</a>
+</body>
+</html>
