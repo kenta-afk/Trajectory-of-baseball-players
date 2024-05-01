@@ -6,7 +6,12 @@ class Group < ApplicationRecord
   has_many :statuses
   accepts_nested_attributes_for :statuses
 
+  def creator
+    self.group_users.find_by(creator: true).user
+  end
+
   private
+
 
   def generate_uuid
     self.uuid = SecureRandom.uuid
