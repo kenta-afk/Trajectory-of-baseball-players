@@ -13,8 +13,8 @@
     <% @members.each do |group_user| %>
       <li class="member-name">
         <%= group_user.user.name %>
-        <!-- 各メンバーのステータスを編集するためのEditボタンを追加します -->
-        <%= link_to 'Edit Status', edit_status_path(@group, group_user.user) %>
+        <!-- 各メンバーのステータスを新規作成するためのリンクを追加します -->
+        <%= link_to 'New Status', new_group_status_path(group_id: group_user.group.id, user_id: group_user.user.id) %>
       </li>
     <% end %>
   </ul>
