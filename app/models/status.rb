@@ -3,6 +3,5 @@ class Status < ApplicationRecord
   belongs_to :group
 
   
-  
-  
+
 end
