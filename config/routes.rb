@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   resources :groups
   resources :memberships
   resources :statuses
+
+
+  resources :groups do
+    resources :statuses
+  end
   
  
   
