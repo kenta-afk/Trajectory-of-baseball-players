@@ -1,4 +1,8 @@
 class GroupsController < ApplicationController
+
+    before_action :check_group_membership, only: [:new, :create]
+
+
     def index
       @groups = current_user.groups
       @user = current_user
@@ -57,6 +61,13 @@ class GroupsController < ApplicationController
     
   
     private
+
+    def check_group_membership
+      if current_user.groups.any?
+        flash[:error] = "You are already a member of a group"
+        redirect_to root_path
+      end
+    end
   
     def group_params
       params.require(:group).permit(:name, statuses_attributes: [:id, :user_id, :group_id, :date, :opponent, :at_bats, :hits, :pitches, :walks, :batting_average])
