@@ -1,0 +1,45 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+  }
+  
+  h1#group-name {
+    color: #333;
+    text-align: center;
+    padding: 20px 0;
+  }
+  
+  p {
+    color: #666;
+    font-size: 0.9em;
+    margin-left: 10px;
+  }
+  
+  h2 {
+    color: #333;
+    margin-left: 10px;
+  }
+  
+  ul#members-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  ul#members-list .member-name {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+  }
+  
+  a {
+    color: #0066cc;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
