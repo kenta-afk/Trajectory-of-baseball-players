@@ -1,31 +1,36 @@
-<%= form_with(model: @status, url: group_statuses_path(@group), local: true, html: { class: "group-form" }) do |form| %>
-  <%= form.hidden_field :user_id, value: params[:user_id] %>
-  <table>
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Opponent</th>
-        <th>At Bats</th>
-        <th>Hits</th>
-        <th>Batting Average</th>
-        <th>Pitches</th>
-        <th>Walks</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><%= form.date_field :date %></td>
-        <td><%= form.text_field :opponent %></td>
-        <td><%= form.number_field :at_bats %></td>
-        <td><%= form.number_field :hits %></td>
-        <td><%= form.number_field :batting_average, step: 0.01 %></td>
-        <td><%= form.number_field :pitches %></td>
-        <td><%= form.number_field :walks %></td>
-      </tr>
-    </tbody>
-  </table>
+<head>
+<%= stylesheet_link_tag 'statuses_new', :media => "all" %>
+</head>
+<body>
+  <%= form_with(model: @status, url: group_statuses_path(@group), local: true, html: { class: "group-form" }) do |form| %>
+    <%= form.hidden_field :user_id, value: params[:user_id] %>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Opponent</th>
+          <th>At Bats</th>
+          <th>Hits</th>
+          <th>Batting Average</th>
+          <th>Pitches</th>
+          <th>Walks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= form.date_field :date %></td>
+          <td><%= form.text_field :opponent %></td>
+          <td><%= form.number_field :at_bats %></td>
+          <td><%= form.number_field :hits %></td>
+          <td><%= form.number_field :batting_average, step: 0.01 %></td>
+          <td><%= form.number_field :pitches %></td>
+          <td><%= form.number_field :walks %></td>
+        </tr>
+      </tbody>
+    </table>
 
-  <div class="actions">
-    <%= form.submit "Submit", class: "submit-button" %>
-  </div>
-<% end %>
+    <div class="actions">
+      <%= form.submit "Submit", class: "submit-button" %>
+    </div>
+  <% end %> 
+</body>
