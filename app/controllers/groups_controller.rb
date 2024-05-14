@@ -10,7 +10,6 @@ class GroupsController < ApplicationController
   
     def new
       @group = Group.new
-      @group.statuses.build
     end
   
     def create
@@ -20,10 +19,7 @@ class GroupsController < ApplicationController
         # グループを作成したユーザーをメンバーとして追加し、creatorフラグをtrueに設定
         @group.group_users.create(user: current_user, creator: true)
         
-        # ここで各Statusのgroup_idを設定
-        @group.statuses.each do |status|
-          status.update(group_id: @group.id)
-        end
+        
     
         redirect_to @group, notice: 'Group was successfully created.'
       else
