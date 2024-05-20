@@ -21,13 +21,26 @@
     <section class="stats">
       <table>
         <tr>
+          <th>日付</th>
+          <th>対戦相手</th>
           <th>打数</th>
           <th>安打</th>
           <th>球数</th>
           <th>四死球</th>
           <th>打率</th>
         </tr>
-        </table>
+        <% @statuses.each do |status| %>
+        <tr>
+          <td><%= status.date %></td>
+          <td><%= status.opponent %></td>
+          <td><%= status.at_bats %></td>
+          <td><%= status.hits %></td>
+          <td><%= status.pitches %></td>
+          <td><%= status.walks %></td>
+          <td><%= status.batting_average %></td>
+        </tr>
+        <% end %>
+      </table>
     </section>
   </main>
   <%= link_to 'グループ作成', groups_path, class: "link" %>
