@@ -18,6 +18,18 @@
       <h2><%= current_user.name %>さんの軌跡</h2>
     </section>
 
+    <section class="total_stats">
+      <h2>合計スタッツ</h2>
+      <p>打数: <%= @total_at_bats %></p>
+      <p>安打: <%= @total_hits %></p>
+      <p>球数: <%= @total_pitches %></p>
+      <p>四死球: <%= @total_walks %></p>
+      <p>打率: <%= number_with_precision(@average_batting_average, precision: 3) %></p>
+    </section>
+
+
+
+
     <section class="stats">
       <table>
         <tr>
