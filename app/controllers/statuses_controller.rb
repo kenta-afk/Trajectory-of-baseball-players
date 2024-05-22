@@ -2,8 +2,9 @@ class StatusesController < ApplicationController
   
   def index
     @group = Group.find(params[:group_id])
-    @members = @group.group_users
+    @members = @group.group_users.includes(:user).order('users.name')
   end
+  
   
 
   def new

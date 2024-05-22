@@ -48,8 +48,9 @@ class GroupsController < ApplicationController
   
     def show
       @group = Group.find(params[:id])
-      @members = @group.group_users
+      @members = @group.group_users.includes(:user).order('users.name')
     end
+    
 
     
     
